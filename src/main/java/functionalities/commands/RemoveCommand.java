@@ -4,7 +4,7 @@ import exception.SniffException;
 import functionalities.SniffTasks;
 import functionalities.Ui;
 
-public class RemoveCommand extends Command{
+public class RemoveCommand extends Command {
     public String uid;
 
     public RemoveCommand(String uid) {

@@ -1,6 +1,6 @@
 package functionalities;
 
-public class Vaccination extends Appointment{
+public class Vaccination extends Appointment {
     protected String date;
     protected String time;
     protected String vaccine;

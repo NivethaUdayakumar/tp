@@ -6,7 +6,7 @@ import functionalities.Owner;
 import functionalities.SniffTasks;
 import functionalities.Ui;
 
-public class ConsulationCommand extends Command{
+public class ConsulationCommand extends Command {
     private final String uid;
     private final Animal animal;
     private final Owner owner;

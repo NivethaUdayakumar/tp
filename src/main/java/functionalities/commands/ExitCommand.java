@@ -3,7 +3,7 @@ package functionalities.commands;
 import exception.SniffException;
 import functionalities.SniffTasks;
 
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
 
     public ExitCommand() {
     }

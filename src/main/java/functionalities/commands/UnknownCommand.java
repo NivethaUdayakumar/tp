@@ -3,7 +3,7 @@ package functionalities.commands;
 import exception.SniffException;
 import functionalities.SniffTasks;
 
-public class UnknownCommand extends Command{
+public class UnknownCommand extends Command {
     public UnknownCommand() {
 
     }

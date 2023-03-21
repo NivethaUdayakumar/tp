@@ -16,7 +16,6 @@ public class Uid {
      * [L] denotes a random letter from A-Z,
      * and XXXXXXXX denotes a random 8-digit number generated.
      *
-     *
      * @param appointmentType The type of appointment
      * @return a string representing a unique appointment ID
      */

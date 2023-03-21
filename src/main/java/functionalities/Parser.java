@@ -1,10 +1,11 @@
 package functionalities;
+
 import exception.SniffException;
 import functionalities.commands.Command;
 import functionalities.commands.ExitCommand;
 import functionalities.commands.ListCommand;
 import functionalities.commands.RemoveCommand;
-import functionalities.commands.ViewCommand;
+import functionalities.commands.FindCommand;
 
 import java.util.logging.Logger;
 
@@ -17,8 +18,8 @@ public class Parser {
         String task = userCommand.trim();
         if (task.toLowerCase().startsWith("add")) {
             parseAddCommand(task);
-        } else if (task.toLowerCase().startsWith("view")) {
-            parseViewCommand(task);
+        } else if (task.toLowerCase().startsWith("find")) {
+            parseFindCommand(task);
         } else if (task.toLowerCase().startsWith("list")) {
             parseListCommand();
         } else if (task.toLowerCase().startsWith("remove")) {
@@ -45,38 +46,55 @@ public class Parser {
             String name = task.substring(nameIndex + 2, dateIndex - 1);
             String date = task.substring(dateIndex + 2);
             //command = new Command(userCommand, uId, type, animal, name, date);
-        } catch (StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" The add command description is invalid!");
         }
     }
 
-    private static void parseConsultationCommand(String task) throws SniffException{
-
-    }
-    private static void parseVaccinationCommand(String task) throws SniffException{
+    private static void parseConsultationCommand(String task) throws SniffException {
 
     }
 
-    private static void parseSurgeryCommand(String task) throws SniffException{
+    private static void parseVaccinationCommand(String task) throws SniffException {
 
     }
 
-    private static void parseMarkCommand(String task) throws SniffException{
-
-    }
-    private static void parseUnmarkCommand(String task) throws SniffException{
+    private static void parseSurgeryCommand(String task) throws SniffException {
 
     }
 
-    private static void parseViewCommand(String task) throws SniffException {
+    private static void parseMarkCommand(String task) throws SniffException {
+
+    }
+
+    private static void parseUnmarkCommand(String task) throws SniffException {
+
+    }
+
+    private static void parseFindCommand(String task) throws SniffException {
         try {
-            String uid = task.split(" ", 2)[1];
-            command = new ViewCommand(uid);
-        } catch (ArrayIndexOutOfBoundsException emptyView) {
-            logger.warning("No appointment ID provided for view command. Unable to execute view command.");
-            throw new SniffException(" The view command description cannot be empty!");
-        }  catch (NumberFormatException e) {
-            logger.warning("Invalid appointment ID format provided. Integer numbers are expected.");
+            // find a/dog or find t/surgery or find aID/123
+            int animalIndex = task.indexOf("a/");
+            int typeIndex = task.indexOf("t/");
+            int aIDIndex = task.indexOf("aID/");
+            if (animalIndex != -1) {
+                String details = task.substring(animalIndex + 2);
+                command = new FindCommand("animal", details);
+            } else if (typeIndex != -1) {
+                String details = task.substring(typeIndex + 2);
+                command = new FindCommand("type", details);
+            } else if (aIDIndex != -1) {
+                String details = task.substring(aIDIndex + 4);
+                command = new FindCommand("appointment", details);
+            } else {
+                logger.warning(" NULL command returned to Sniff.run");
+                throw new SniffException(" Invalid details provided for find command. Unable to execute find command.");
+            }
+        } catch (ArrayIndexOutOfBoundsException emptyFind) {
+            logger.warning(" Invalid details provided for find command. Unable to execute find command.");
+            throw new SniffException(" The find command description cannot be empty!");
+        } catch (NumberFormatException e) {
+            logger.warning(" Invalid appointment ID format provided. Integer numbers are expected.");
             throw new SniffException(" The user Id to view appointment details must be a number!");
         }
     }

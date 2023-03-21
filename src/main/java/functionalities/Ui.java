@@ -1,5 +1,7 @@
 package functionalities;
+
 import exception.SniffException;
+
 import java.util.Scanner;
 
 public class Ui {

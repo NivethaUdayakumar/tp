@@ -2,6 +2,7 @@ package functionalities;
 
 
 public abstract class Appointment {
+
     protected String uid;
     protected Animal animal;
     protected Owner owner;

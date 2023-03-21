@@ -5,12 +5,14 @@ import exception.SniffException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class SniffTasks {
 
     private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
-    private static final HashMap<String, Integer> UIDS = new HashMap<String, Integer>();
+    private static final HashMap<String, Integer> UIDS = new HashMap<>();
 
     private static int appointmentCount = 0;
+
     public void addConsultation(Animal animal, Owner owner,
                                 String date, String time) throws SniffException {
         try {
@@ -27,6 +29,7 @@ public class SniffTasks {
             throw new SniffException("Invalid consultation description !!");
         }
     }
+
     public void addVaccination(Animal animal, Owner owner,
                                String date, String time, String vaccine) throws SniffException {
         try {
@@ -40,10 +43,11 @@ public class SniffTasks {
             UIDS.put(uid, appointmentCount);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
-        } catch (StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException("Invalid vaccination description !!");
         }
     }
+
     public void addSurgery(Animal animal, Owner owner,
                            String priority, String startDate, String startTime,
                            String endDate, String endTime) throws SniffException {
@@ -58,7 +62,7 @@ public class SniffTasks {
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
-        } catch (StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException("Invalid surgery description !!");
         }
     }
@@ -94,14 +98,51 @@ public class SniffTasks {
         }
     }
 
-    public void viewAppointment(String uid) {
-        assert uid != null : "Appointment ID should not be null.";
-        if (!UIDS.containsKey(uid)) {
-            System.out.println("There are no appointments with this ID.");
+    public void findAppointment(String uId) throws SniffException {
+        int counter = 1;
+        for (Appointment appointment : APPOINTMENTS) {
+            assert appointment.uid != null;
+            if (uId.equalsIgnoreCase(appointment.uid)) {
+                Ui.formatPrintList(counter, appointment.toString());
+                counter++;
+            }
         }
-        int index = UIDS.get(uid);
-        System.out.println("Here is the appointment details: ");
-        System.out.println(APPOINTMENTS.get(index));
+        if (uId.equals("")) {
+            throw new SniffException(" No appointment ID provided!");
+        }
+        if (!uId.matches("\\d+")) {
+            throw new SniffException(" Appointment ID must consist of integers!");
+        }
+        if (counter == 1) {
+            Ui.showUserMessage(" There are no appointments with this ID!");
+        }
     }
 
+    public void findAnimal(String animal) {
+        int counter = 1;
+        for (Appointment appointment : APPOINTMENTS) {
+            assert appointment.animal.type != null;
+            if (animal.equalsIgnoreCase(appointment.animal.type)) {
+                Ui.formatPrintList(counter, appointment.toString());
+                counter++;
+            }
+        }
+        if (counter == 1) {
+            Ui.showUserMessage(" There are no appointments for this animal type!");
+        }
+    }
+
+    public void findType(String type) {
+        int counter = 1;
+        for (Appointment appointment : APPOINTMENTS) {
+            assert appointment != null;
+            if (type.equalsIgnoreCase(String.valueOf(appointment))) {
+                Ui.formatPrintList(counter, appointment.toString());
+                counter++;
+            }
+        }
+        if (counter == 1) {
+            Ui.showUserMessage(" There are no appointments of this type!");
+        }
+    }
 }
