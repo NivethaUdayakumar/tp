@@ -3,10 +3,8 @@ package functionalities.commands;
 import exception.SniffException;
 import functionalities.SniffTasks;
 
-
 public class ListCommand extends Command {
     public ListCommand() {
-
     }
 
     @Override

@@ -3,7 +3,6 @@ package functionalities.commands;
 import exception.SniffException;
 import functionalities.SniffTasks;
 
-
 public class FindCommand extends Command {
 
     protected String category;

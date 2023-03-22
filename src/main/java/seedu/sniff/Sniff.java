@@ -2,8 +2,8 @@ package seedu.sniff;
 
 import exception.SniffException;
 import functionalities.commands.Command;
-import functionalities.Ui;
-import functionalities.Parser;
+import functionalities.ui.Ui;
+import functionalities.parser.Parser;
 import functionalities.SniffTasks;
 
 public class Sniff {

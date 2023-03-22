@@ -1,10 +1,14 @@
 package functionalities;
 
 import exception.SniffException;
+import functionalities.appointments.Appointment;
+import functionalities.appointments.Consultation;
+import functionalities.appointments.Surgery;
+import functionalities.appointments.Vaccination;
+import functionalities.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class SniffTasks {
 
@@ -26,14 +30,13 @@ public class SniffTasks {
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
         } catch (StringIndexOutOfBoundsException e) {
-            throw new SniffException("Invalid consultation description !!");
+            throw new SniffException(" Invalid consultation description!");
         }
     }
 
     public void addVaccination(Animal animal, Owner owner,
                                String date, String time, String vaccine) throws SniffException {
         try {
-
             String uid = Uid.uidGenerator("V");
             while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
                 uid = Uid.uidGenerator("V");
@@ -44,7 +47,7 @@ public class SniffTasks {
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
         } catch (StringIndexOutOfBoundsException e) {
-            throw new SniffException("Invalid vaccination description !!");
+            throw new SniffException(" Invalid vaccination description!");
         }
     }
 
@@ -63,14 +66,14 @@ public class SniffTasks {
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
         } catch (StringIndexOutOfBoundsException e) {
-            throw new SniffException("Invalid surgery description !!");
+            throw new SniffException(" Invalid surgery description!");
         }
     }
 
     public void removeAppointment(String uid) throws SniffException {
         try {
             if (!UIDS.containsKey(uid)) {
-                throw new SniffException("There are no appointments with this ID.");
+                throw new SniffException(" There are no appointments with this ID.");
             }
             int index = UIDS.get(uid);
             Appointment temp = APPOINTMENTS.get(index);

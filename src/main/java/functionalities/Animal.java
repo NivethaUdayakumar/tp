@@ -8,4 +8,9 @@ public class Animal {
         this.type = type;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return name + " | Animal Type: " + type;
+    }
 }

@@ -8,4 +8,9 @@ public class Owner {
         this.name = name;
         this.contactNumber = contactNumber;
     }
+
+    @Override
+    public String toString() {
+        return name + " | Contact Number: " + contactNumber;
+    }
 }

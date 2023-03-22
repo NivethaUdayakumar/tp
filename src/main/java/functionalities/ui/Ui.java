@@ -1,10 +1,12 @@
-package functionalities;
+package functionalities.ui;
 
 import exception.SniffException;
+import functionalities.appointments.Appointment;
 
 import java.util.Scanner;
 
 public class Ui {
+
     private static final String DOT_THEN_SPACE = ". ";
 
     public static void showUserMessage(String s) {
@@ -39,12 +41,12 @@ public class Ui {
     }
 
     public static void printAppointmentAddedMessage(Appointment appointment) {
-        System.out.println("This appointment has been added to your appointment manager: ");
-        System.out.println(appointment);
+        System.out.println(" This appointment has been added to your appointment manager: ");
+        System.out.println(appointment.toString());
     }
 
     public static void printAppointmentRemovedMessage(Appointment appointment) {
-        System.out.println("This appointment has been removed your appointment manager: ");
-        System.out.println(appointment);
+        System.out.println(" This appointment has been removed your appointment manager: ");
+        System.out.println(appointment.toString());
     }
 }
