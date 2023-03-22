@@ -18,4 +18,6 @@ public abstract class Appointment {
     }
 
     public abstract String toString();
+
+    public abstract String getDescription();
 }

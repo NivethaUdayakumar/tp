@@ -8,6 +8,8 @@ public class Consultation extends Appointment {
     protected String date;
     protected String time;
 
+    protected String description = "consultation";
+
     public Consultation(String uid, Animal animal, Owner owner, String date, String time) {
         super(uid, animal, owner);
         this.uid = uid;
@@ -23,5 +25,10 @@ public class Consultation extends Appointment {
                 + " Date: " + date + " | Time: " + time + '\n'
                 + " Animal Name: " + animal.toString() + '\n'
                 + " Owner Name: " + owner.toString();
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 }

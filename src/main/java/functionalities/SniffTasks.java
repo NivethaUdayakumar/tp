@@ -139,7 +139,7 @@ public class SniffTasks {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment != null;
-            if (type.equalsIgnoreCase(String.valueOf(appointment))) {
+            if (type.equalsIgnoreCase(appointment.getDescription())) {
                 Ui.formatPrintList(counter, appointment.toString());
                 counter++;
             }

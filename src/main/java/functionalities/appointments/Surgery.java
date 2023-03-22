@@ -15,6 +15,8 @@ public class Surgery extends Appointment {
     protected String endDate;
     protected String endTime;
 
+    protected String description = "surgery";
+
     public Surgery(String uid, Animal animal, Owner owner, String priority,
                    String startDate, String startTime, String endDate, String endTime) {
         super(uid, animal, owner);
@@ -48,5 +50,10 @@ public class Surgery extends Appointment {
                 + " Owner Name: " + owner.toString() + '\n'
                 + " Start Date: " + startDate + " | Start Time: " + startTime + '\n'
                 + " End Date: " + endDate + " | End Time: " + endTime;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 }
