@@ -13,4 +13,12 @@ public class Animal {
     public String toString() {
         return name + " | Animal Type: " + type;
     }
+
+    public String getAnimalName() {
+        return name;
+    }
+
+    public String getAnimalType() {
+        return type;
+    }
 }

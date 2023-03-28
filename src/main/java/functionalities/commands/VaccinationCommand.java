@@ -6,15 +6,18 @@ import functionalities.Owner;
 import functionalities.SniffTasks;
 import functionalities.ui.Ui;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class VaccinationCommand extends Command {
     private final Animal animal;
     private final Owner owner;
     private final String vaccine;
-    private final String date;
-    private final String time;
+    private final LocalDate date;
+    private final LocalTime time;
 
     public VaccinationCommand(String animalType, String animalName, String ownerName,
-                              String contactNumber, String vaccine, String date, String time) {
+                              String contactNumber, String vaccine, LocalDate date, LocalTime time) {
         this.animal = new Animal(animalType, animalName);
         this.owner = new Owner(ownerName, contactNumber);
         this.vaccine = vaccine;

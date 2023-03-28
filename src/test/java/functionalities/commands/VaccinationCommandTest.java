@@ -2,6 +2,9 @@ package functionalities.commands;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class VaccinationCommandTest {
@@ -13,8 +16,8 @@ class VaccinationCommandTest {
         String ownerName = "";
         String contactNumber = "";
         String vaccine = "";
-        String date = "";
-        String time = "";
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
         VaccinationCommand c = new VaccinationCommand(animalType, animalName, ownerName,
                 contactNumber, vaccine, date, time);
         assertNotNull(c);

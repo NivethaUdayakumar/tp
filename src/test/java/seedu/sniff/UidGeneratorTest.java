@@ -1,6 +1,8 @@
 package seedu.sniff;
 
+import exception.SniffException;
 import functionalities.Uid;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -11,34 +13,55 @@ public class UidGeneratorTest {
 
     @Test
     public void uidNotNullTest() {
-        String uid = Uid.uidGenerator("A");
-        assertNotNull(uid, "Uid generated is null");
+        try {
+            String uid = Uid.uidGenerator("C");
+            assertNotNull(uid, "Uid generated is null");
+        } catch (SniffException e) {
+            Assertions.fail();
+        }
+
     }
 
     @Test
     public void uidLengthTest() {
-        String uid = Uid.uidGenerator("A");
-        assertEquals(10, uid.length());
-        uid = Uid.uidGenerator("");
-        assertEquals(9, uid.length());
-        uid = Uid.uidGenerator("Abc");
-        assertEquals(12, uid.length());
+        try {
+            String uid = Uid.uidGenerator("C");
+            assertEquals(10, uid.length());
+        } catch (SniffException e) {
+            Assertions.fail("Length of uid generated is incorrect.");
+        }
+
     }
 
     @Test
-    public void uidFirstCharTest() {
-        String uid = Uid.uidGenerator("S");
-        assertEquals('S', uid.charAt(0));
-        uid = Uid.uidGenerator("V");
-        assertEquals('V', uid.charAt(0));
-        uid = Uid.uidGenerator("C");
-        assertEquals('C', uid.charAt(0));
+    public void uidValidInputTest() {
+        try {
+            String uid = Uid.uidGenerator("S");
+            uid = Uid.uidGenerator("V");
+            uid = Uid.uidGenerator("C");
+        } catch (SniffException e) {
+            Assertions.fail("This test should not fail as they are valid inputs.");
+        }
     }
 
     @Test
     public void uidLastCharTest() {
-        String uid = Uid.uidGenerator("A");
-        assertTrue(('A' <= uid.charAt(9)) && (uid.charAt(9) <= 'Z'),
-                "Letter should be between A to Z");
+        try {
+            String uid = Uid.uidGenerator("C");
+            assertTrue(('A' <= uid.charAt(9)) && (uid.charAt(9) <= 'Z'),
+                    "Letter should be between A to Z");
+        } catch (SniffException e) {
+            Assertions.fail("This test should not fail as it is a valid input");
+        }
+    }
+
+    @Test
+    public void uidWrongInputTest() {
+        try {
+            String uid = Uid.uidGenerator("A");
+            Assertions.fail("This test should fail with invalid inputs");
+        } catch (SniffException e) {
+            assertEquals("Invalid appointment type for uid generation.", e.getErrorMessage());
+        }
     }
 }

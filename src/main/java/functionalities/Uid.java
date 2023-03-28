@@ -1,5 +1,7 @@
 package functionalities;
 
+import exception.SniffException;
+
 import java.util.Random;
 
 public class Uid {
@@ -8,6 +10,7 @@ public class Uid {
     private static final int NINE_CHAR_IN_INT = 57;
     private static final int A_CHAR_IN_INT = 65;
     private static final int Z_CHAR_IN_INT = 90;
+
 
     /**
      * Generates a 10-character long unique appointment ID with the leading character denoting the
@@ -19,19 +22,22 @@ public class Uid {
      * @param appointmentType The type of appointment
      * @return a string representing a unique appointment ID
      */
-    public static String uidGenerator(String appointmentType) {
-        String uid;
-        String eightDigitNumber = "";
+    public static String uidGenerator(String appointmentType) throws SniffException {
+        if (!appointmentType.equals("C") && !appointmentType.equals("V") && !appointmentType.equals("S")) {
+            throw new SniffException("Invalid appointment type for uid generation.");
+        }
+        StringBuilder uidBuilder = new StringBuilder("");
+        StringBuilder eightDigitNumber = new StringBuilder("");
         Random random = new Random();
-
+        uidBuilder.append(appointmentType);
         for (int i = 0; i < DIGIT_LENGTH; i++) {
             char digit = (char) (random.nextInt(NINE_CHAR_IN_INT - ZERO_CHAR_IN_INT) + ZERO_CHAR_IN_INT);
-            eightDigitNumber += digit;
+            eightDigitNumber.append(digit);
         }
-
+        uidBuilder.append(eightDigitNumber.toString());
         char letter = (char) (random.nextInt(Z_CHAR_IN_INT - A_CHAR_IN_INT) + A_CHAR_IN_INT);
-
-        uid = appointmentType + eightDigitNumber + letter;
-        return uid;
+        uidBuilder.append(letter);
+        String uidString = uidBuilder.toString();
+        return uidString;
     }
 }

@@ -13,4 +13,12 @@ public class Owner {
     public String toString() {
         return name + " | Contact Number: " + contactNumber;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
 }

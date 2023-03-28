@@ -6,19 +6,22 @@ import functionalities.Owner;
 import functionalities.SniffTasks;
 import functionalities.ui.Ui;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class SurgeryCommand extends Command {
 
     private final Animal animal;
     private final Owner owner;
     private final String priority;
-    private final String startDate;
-    private final String startTime;
-    private final String endDate;
-    private final String endTime;
+    private final LocalDate startDate;
+    private final LocalTime startTime;
+    private final LocalDate endDate;
+    private final LocalTime endTime;
 
     public SurgeryCommand(String animalType, String animalName, String ownerName,
-                          String contactNumber, String startDate, String startTime,
-                          String endDate, String endTime, String priority) {
+                          String contactNumber, LocalDate startDate, LocalTime startTime,
+                          LocalDate endDate, LocalTime endTime, String priority) {
         this.priority = priority;
         this.animal = new Animal(animalType, animalName);
         this.owner = new Owner(ownerName, contactNumber);
